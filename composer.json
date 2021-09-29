@@ -1,0 +1,39 @@
+{
+  "name": "team-portfolio-2/team2-portfolio-cda",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "core\\": "core/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Thibaut CHIRON",
+      "email": "chiron.thibaut@sfr.fr",
+      "role": "Formateur"
+    },
+    {
+      "name": "Michel GUINIS",
+      "email": "",
+      "role": "Apprenant Développeur"
+    },
+    {
+      "name": "Kenny HOTON",
+      "email": "",
+      "role": "Apprenant Développeur"
+    },
+    {
+      "name": "André DAVIET",
+      "email": "",
+      "role": "Apprenant Développeur"
+    },
+    {
+      "name": "Nicolas DITE REINETTE",
+      "email": "",
+      "role": "Apprenant Développeur"
+    }
+  ],
+  "require-dev": {
+    "symfony/var-dumper": "^5.3"
+  }
+}
