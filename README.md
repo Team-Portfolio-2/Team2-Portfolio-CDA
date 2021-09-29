@@ -1,1 +1,6 @@
-#Team 2 Portfolio
+## Team 2 Portfolio
+
+ - André 
+ - Nicolas 
+ - Kenny 
+ - Michel
