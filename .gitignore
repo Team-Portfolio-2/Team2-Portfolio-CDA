@@ -1,2 +1,4 @@
 vendor/
-config/config/mysql.ini
+.DS_Store
+config/mysql.ini
+
