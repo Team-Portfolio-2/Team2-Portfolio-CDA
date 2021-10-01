@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Dao\PortefolioDao;
 use App\Dao\PortfolioDao;
 use App\Model\PortefolioModele;
-use App\Model\Profil;
+use App\Model\Profile;
 use PDOException;
 
 class PortfolioController
@@ -14,7 +14,8 @@ class PortfolioController
 
     public function index(): void
     {
-        var_dump("test");
+        if (isset($_SESSION['admin']))
+            dump($_SESSION['admin']);
         // Récupérer toutes les infos
     }
 
@@ -24,6 +25,7 @@ class PortfolioController
         if ('GET' === $request_method) {
             require implode(DIRECTORY_SEPARATOR, [TEMPLATES, 'admin', 'signup.html.php']);
         } elseif ('POST' === $request_method) {
+
             $args = [
                 "email" => [],
                 "passwordOne" => [],
@@ -38,8 +40,8 @@ class PortfolioController
                 $error_messages = "Merci de mettre les memes mots de passe !";
             } else {
                 $passwordHash = password_hash($_POST['passwordOne'], PASSWORD_DEFAULT);
-
-                $admin = (new Profil())->setFirstName("John")
+                $error_messages = "";
+                $admin = (new Profile())->setFirstName("John")
                     ->setLastName("Doe")
                     ->setGender(1)
                     ->setAdress(null)
@@ -58,7 +60,7 @@ class PortfolioController
             if (empty($error_messages)) {
                 try {
                     (new PortfolioDao())->signUp($admin);
-                    require implode(DIRECTORY_SEPARATOR, [TEMPLATES, 'admin', 'signin.html.php']);
+                    header("Location: /admin/signin");
                     exit;
                 } catch (PDOException $e) {
                     echo $e->getMessage();
@@ -69,8 +71,37 @@ class PortfolioController
         }
     }
 
-    public function signin(): void
+    public function signIn(): void
     {
+        $request_method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
+        if ('GET' === $request_method) {
+            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, 'admin', 'signin.html.php']);
+        } elseif ('POST' === $request_method) {
+            $error_messages = "";
+            $args = [
+                "email" => [],
+                "passwordOne" => [],
+            ];
+
+            $admin = filter_input_array(INPUT_POST, $args);
+            if (empty($admin['email']) || empty($admin['passwordOne'])) {
+                $error_messages = "Merci de completer tous les champs obligatoires !";
+            }
+            if (empty($error_messages)) {
+                try {
+                    $adminConfirmed = (new PortfolioDao())->signIn($admin);
+                    if (password_verify($admin['passwordOne'], $adminConfirmed->getPassword())) {
+                        $_SESSION['admin'] = $adminConfirmed;
+                        header('Location: /');
+                        exit;
+                    }
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                }
+            } else {
+                //ERROR 404
+            }
+        }
     }
 
     public function logout(): void

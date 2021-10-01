@@ -3,6 +3,9 @@
 use core\Router\Exception\RouteNotFoundException;
 use core\Router\Router;
 
+
+session_start();
+
 require_once implode(DIRECTORY_SEPARATOR, [__DIR__, "..", "config", "config.php"]);
 
 $router = Router::getInstance();
@@ -15,9 +18,7 @@ try {
     // (new App\Controller\ArticleController())->index()
     // (new App\Controller\ArticleController())->show($id)
     (new ($route->getController())())->{$route->getAction()}(...$router->getMatches());
-    
-} 
-catch (RouteNotFoundException $e) {
+} catch (RouteNotFoundException $e) {
     echo $e->getMessage();
     // header("Location: /"); // ou error 404
     // exit;

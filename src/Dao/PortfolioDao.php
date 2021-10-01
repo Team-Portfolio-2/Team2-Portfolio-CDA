@@ -2,11 +2,12 @@
 
 namespace App\Dao;
 
-use App\Model\Profil;
+use App\Model\Profile;
+use PDO;
 
 class PortfolioDao extends AbstractDao
 {
-    public function signUp(Profil $admin): void
+    public function signUp(Profile $admin): void
     {
         $req = $this->pdo->prepare(
             "INSERT INTO profile VALUES (:first_name, 
@@ -42,5 +43,33 @@ class PortfolioDao extends AbstractDao
             ":catchphrase" => $admin->getCatchphrase(),
             ":birthdate" => $admin->getBirthdate(),
         ]);
+    }
+
+    public function signIn($admin): Profile
+    {
+        $req = $this->pdo->prepare(
+            "SELECT * FROM profile WHERE email = ?"
+        );
+        $req->execute([
+            $admin['email'],
+        ]);
+        $receivedProfile = ($req->fetch());
+        $admin = (new Profile())
+            ->setFirstName($receivedProfile["first_name"])
+            ->setLastName($receivedProfile["last_name"])
+            ->setGender($receivedProfile["gender"])
+            ->setAdress($receivedProfile["adress"])
+            ->setCp($receivedProfile["cp"])
+            ->SetCity($receivedProfile["city"])
+            ->setEmail($receivedProfile["email"])
+            ->setPhone($receivedProfile["phone"])
+            ->setLinkedinUrl($receivedProfile["linkedin_url"])
+            ->setGithubUrl($receivedProfile["github_url"])
+            ->setTwitterUrl($receivedProfile["twitter_url"])
+            ->setPassword($receivedProfile["password"])
+            ->setDriveLicence($receivedProfile["drive_licence"])
+            ->setCatchphrase($receivedProfile["catchphrase"])
+            ->setBirthdate($receivedProfile["birthdate"]);
+        return $admin;
     }
 }

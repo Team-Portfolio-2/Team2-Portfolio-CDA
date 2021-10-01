@@ -11,4 +11,5 @@
 </head>
 
 <body>
-    <?php require TEMPLATES . DIRECTORY_SEPARATOR . "nav.html.php"; ?>
+    <?php require TEMPLATES . DIRECTORY_SEPARATOR . "nav.html.php";
+    ?>
