@@ -1,0 +1,10 @@
+insert into tasks (id, description) values (1, 'Morbi porttitor lorem id ligula.');
+insert into tasks (id, description) values (2, 'Mauris ullamcorper purus sit amet nulla.');
+insert into tasks (id, description) values (3, 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.');
+insert into tasks (id, description) values (4, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.');
+insert into tasks (id, description) values (5, 'Aliquam sit amet diam in magna bibendum imperdiet.');
+insert into tasks (id, description) values (6, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.');
+insert into tasks (id, description) values (7, 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
+insert into tasks (id, description) values (8, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.');
+insert into tasks (id, description) values (9, 'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.');
+insert into tasks (id, description) values (10, 'Nullam molestie nibh in lectus. Pellentesque at nulla.');
