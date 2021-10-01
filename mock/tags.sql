@@ -1,0 +1,10 @@
+insert into tags (id, name, type_id) values (1, 'magna at', 1);
+insert into tags (id, name, type_id) values (2, 'et', 2);
+insert into tags (id, name, type_id) values (3, 'volutpat sapien arcu', 3);
+insert into tags (id, name, type_id) values (4, 'in est risus', 4);
+insert into tags (id, name, type_id) values (5, 'fringilla', 5);
+insert into tags (id, name, type_id) values (6, 'varius nulla', 6);
+insert into tags (id, name, type_id) values (7, 'vel', 7);
+insert into tags (id, name, type_id) values (8, 'proin', 8);
+insert into tags (id, name, type_id) values (9, 'scelerisque', 9);
+insert into tags (id, name, type_id) values (10, 'sagittis nam', 10);
