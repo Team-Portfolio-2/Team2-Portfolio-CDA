@@ -9,4 +9,5 @@
     <title>Document</title>
 </head>
 <body>
+    <h2>Header</h2>
     <?php require TEMPLATES . DIRECTORY_SEPARATOR . "nav.html.php"; ?>
