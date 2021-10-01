@@ -1,7 +1,5 @@
 vendor/
-<<<<<<< HEAD
 .DS_Store
 config/mysql.ini
-=======
 config/config/mysql.ini
->>>>>>> michel
+
