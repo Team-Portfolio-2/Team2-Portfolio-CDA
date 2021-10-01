@@ -1,5 +1,6 @@
 <?php
 
+use core\Renderer;
 use core\Router\Exception\RouteNotFoundException;
 use core\Router\Router;
 
@@ -17,8 +18,7 @@ try {
     
     // (new App\Controller\ArticleController())->index()
     // (new App\Controller\ArticleController())->show($id)
-    (new ($route->getController())())->{$route->getAction()}(...$router->getMatches());
-    
+    (new ($route->getController())(Renderer::getInstance()))->{$route->getAction()}(...$router->getMatches());
 } 
 catch (RouteNotFoundException $e) {
     dump($e);
