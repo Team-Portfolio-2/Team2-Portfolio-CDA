@@ -1,5 +1,5 @@
 <?php
-foreach ($eductions as $education) : ?>
+foreach ($educations as $education) : ?>
     <article>
         <h2><?= $education->getName() ?></h2>
         <span><?= $education->getCompany() ?></span>
