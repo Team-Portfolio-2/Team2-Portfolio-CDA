@@ -1,3 +1,7 @@
+<<<<<<< michel
+=======
+
+>>>>>>> creation admin + insert into bd ;
 <?php
 
 namespace App\Controller;
@@ -11,20 +15,16 @@ class TypeController
 
     public function showTags(): void
     {
-        
     }
 
-    
+
     public function editTag(int $id_tag): void
     {
-
     }
 
 
 
     public function deleteTag(int $id_tag): void
     {
-
     }
-
 }
