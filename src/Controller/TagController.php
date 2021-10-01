@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\Tag;
 
-class TagController extends Controller
+class TagController
 {
 
 
