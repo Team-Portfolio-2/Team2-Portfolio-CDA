@@ -1,4 +1,7 @@
+<<<<<<< michel
+=======
 
+>>>>>>> creation admin + insert into bd ;
 <?php
 
 namespace App\Controller;
@@ -7,7 +10,7 @@ use App\Dao\PortefolioDao;
 use App\Model\PortefolioModele;
 use PDOException;
 
-class TagController
+class TypeController
 {
 
     public function showTags(): void
