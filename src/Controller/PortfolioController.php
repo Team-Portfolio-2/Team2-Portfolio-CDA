@@ -15,7 +15,7 @@ class PortfolioController
     public function index(): void
     {
         if (isset($_SESSION['admin']))
-            dump($_SESSION['admin']);
+            dump($_SESSION);
         // Récupérer toutes les infos
     }
 
@@ -90,7 +90,7 @@ class PortfolioController
             if (empty($error_messages)) {
                 try {
                     $adminConfirmed = (new PortfolioDao())->signIn($admin);
-                    if (password_verify($admin['passwordOne'], $adminConfirmed->getPassword())) {
+                    if (password_verify($admin['passwordOne'], $adminConfirmed['password'])) {
                         $_SESSION['admin'] = $adminConfirmed;
                         header('Location: /');
                         exit;

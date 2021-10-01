@@ -45,7 +45,7 @@ class PortfolioDao extends AbstractDao
         ]);
     }
 
-    public function signIn($admin): Profile
+    public function signIn($admin)
     {
         $req = $this->pdo->prepare(
             "SELECT * FROM profile WHERE email = ?"
@@ -54,22 +54,6 @@ class PortfolioDao extends AbstractDao
             $admin['email'],
         ]);
         $receivedProfile = ($req->fetch());
-        $admin = (new Profile())
-            ->setFirstName($receivedProfile["first_name"])
-            ->setLastName($receivedProfile["last_name"])
-            ->setGender($receivedProfile["gender"])
-            ->setAdress($receivedProfile["adress"])
-            ->setCp($receivedProfile["cp"])
-            ->SetCity($receivedProfile["city"])
-            ->setEmail($receivedProfile["email"])
-            ->setPhone($receivedProfile["phone"])
-            ->setLinkedinUrl($receivedProfile["linkedin_url"])
-            ->setGithubUrl($receivedProfile["github_url"])
-            ->setTwitterUrl($receivedProfile["twitter_url"])
-            ->setPassword($receivedProfile["password"])
-            ->setDriveLicence($receivedProfile["drive_licence"])
-            ->setCatchphrase($receivedProfile["catchphrase"])
-            ->setBirthdate($receivedProfile["birthdate"]);
-        return $admin;
+        return $receivedProfile;
     }
 }
