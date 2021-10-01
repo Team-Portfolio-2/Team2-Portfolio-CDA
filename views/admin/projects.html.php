@@ -1,4 +1,8 @@
+
+
 <?php
+
+echo "<h2>Mes Projets</h2>";
 
 foreach ($projects as $project) : ?>
     <article>
@@ -8,9 +12,8 @@ foreach ($projects as $project) : ?>
         <a href="<?= sprintf('/project/%d/show', $project->getId()) ?>">Voir le détail du projet</a>
     </article>
 <?php
+
 endforeach;
-
-
 ?>        
 
 
