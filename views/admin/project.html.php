@@ -1,8 +1,4 @@
-<?php
-<<<<<<< Updated upstream
-=======
-require TEMPLATES . DIRECTORY_SEPARATOR . "header.html.php";
-?>
+
 
 <article>
     <h2><?= $project->getTitle() ?></h2>
@@ -12,7 +8,3 @@ require TEMPLATES . DIRECTORY_SEPARATOR . "header.html.php";
     <a href="<?= sprintf('/admin/project/%d/delete', $article->getId()) ?>">Supprimer l'article</a>
 </article>
 
-<?php
-require TEMPLATES . DIRECTORY_SEPARATOR . "footer.html.php";
-?>
->>>>>>> Stashed changes
