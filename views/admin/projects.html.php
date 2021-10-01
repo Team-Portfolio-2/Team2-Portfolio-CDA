@@ -1,6 +1,6 @@
 <?php
 
-/*foreach ($projects as $project) : ?>
+foreach ($projects as $project) : ?>
     <article>
         <h2><?= $project->getTitle() ?></h2>
         <span><?= $project->getCreatedAt() ?></span>
@@ -9,4 +9,6 @@
     </article>
 <?php
 endforeach;
-*/
+
+
+?>
