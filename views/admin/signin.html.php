@@ -5,15 +5,11 @@ require TEMPLATES . DIRECTORY_SEPARATOR . "header.html.php";
 <form action="" method="post">
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="email">
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="email">
     </div>
     <div class="mb-3">
         <label for="passwordOne" class="form-label">Password</label>
-        <input type="password" class="form-control" id="passwordOne">
-    </div>
-    <div class="mb-3">
-        <label for="passwordTwo" class="form-label">Password</label>
-        <input type="password" class="form-control" id="passwordTwo">
+        <input type="password" class="form-control" name="passwordOne" id="passwordOne">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

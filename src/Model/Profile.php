@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class Profil
+class Profile
 {
     protected string $first_name;
     protected string $last_name;
