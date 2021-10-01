@@ -1,3 +1,7 @@
+<<<<<<< michel
+=======
+
+>>>>>>> creation admin + insert into bd ;
 <?php
 
 namespace App\Controller;

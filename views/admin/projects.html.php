@@ -16,7 +16,6 @@ foreach ($projects as $project) : ?>
 endforeach;
 ?>        
 
-
 <!-- 
 getId 
 getName;
