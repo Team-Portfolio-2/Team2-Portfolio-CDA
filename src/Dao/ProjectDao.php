@@ -3,18 +3,30 @@
 namespace App\Dao;
 
 use App\Model\Project;
+use DateTime;
 use PDO;
 
 class ProjectDao extends AbstractDao
 {
+    private function toDateTime(string $date): Datetime 
+    {
+        return DateTime::createFromFormat(
+            "Y-m-d", 
+            $date
+        );
+    }
+
     public function getAll(): array
     {
         $req = $this->pdo->prepare("SELECT * FROM projects");
         $req->execute();
         $result = $req->fetchAll(PDO::FETCH_ASSOC);
+
         $projects = [];
 
         foreach ($result as $key => $project) {
+            
+
             $projects[$key] = (new Project(
                 $project['id'],
                 $project['name'],
@@ -22,12 +34,12 @@ class ProjectDao extends AbstractDao
                 $project['logo_company'],
                 $project['description'],
                 $project['website'],
-                $project['start'],
-                $project['end']
+                $this->toDateTime($project['start']),
+                $this->toDateTime($project['end'])
             ));
         }
 
-        return $result;
+        return $projects;
     }
 
 
@@ -38,7 +50,10 @@ class ProjectDao extends AbstractDao
         ":id" => $id
       ]);
 
+      
         $project = $req->fetch(PDO::FETCH_ASSOC);
+
+        $format = "'l M j, y \a\t g:iA'";
 
         $article = (new Project(
         $project['id'],
@@ -47,8 +62,8 @@ class ProjectDao extends AbstractDao
         $project['logo_company'],
         $project['description'],
         $project['website'],
-        $project['start'],
-        $project['end']
+        $this->toDateTime($project['start']),
+        $this->toDateTime($project['end'])
         ));
 
         return $$article;
