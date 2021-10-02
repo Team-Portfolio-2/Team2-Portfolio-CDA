@@ -13,12 +13,12 @@ class ProjectController
             $projects = (new ProjectDao())->getAll();
         } catch (PDOException $e) {
             echo $e->getMessage();
-            // require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
         }
 
-        // require implode(
-        //     DIRECTORY_SEPARATOR, 
-        //     [TEMPLATES, "projects", "index.html.php"]);
+         require implode(
+             DIRECTORY_SEPARATOR, 
+             [TEMPLATES, "projects", "projects.html.php"]);
 
     }
     public function add(): void
