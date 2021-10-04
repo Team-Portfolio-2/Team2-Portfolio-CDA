@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use DateTime;
+
 class Profile
 {
     protected string $first_name;
@@ -18,7 +20,7 @@ class Profile
     protected string $password;
     protected ?int $drive_licence;
     protected ?string $catchphrase;
-    protected ?int $birthdate;
+    protected ?DateTime $birthdate;
 
     /**
      * Get the value of first_name
@@ -373,7 +375,7 @@ class Profile
      *
      * @return self
      */
-    public function setBirthdate(?int $birthdate): self
+    public function setBirthdate(?DateTime $birthdate): self
     {
         $this->birthdate = $birthdate;
 
