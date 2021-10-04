@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
+use App\Dao\PortfolioDao;
 use PDOException;
 use App\Model\Profile;
 use App\Dao\ProjectDao;
-use App\Dao\PortfolioDao;
-use App\Dao\PortefolioDao;
 use App\Model\PortefolioModele;
 
 class PortfolioController
