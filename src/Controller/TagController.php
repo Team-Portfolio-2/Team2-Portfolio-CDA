@@ -3,10 +3,27 @@
 namespace App\Controller;
 
 use App\Model\Tag;
+use App\Dao\Tag;
 
 class TagController
 {
 
+    public function index(){
+
+
+        try {
+            $tags = (new Tag())->getAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+        }
+    
+         require implode(
+             DIRECTORY_SEPARATOR, 
+             [TEMPLATES, "projects", "tags.html.php"]);
+    
+
+    }
 
     public function addTag(): void
     {
@@ -19,7 +36,7 @@ class TagController
             $newTag = (new Tag())
                 ->setId(null)
                 ->setName($_POST['name'])
-                ->setTypeId($_POST['id'])                ;
+                ->setTypeId($_POST['id']);
             try {
                 TagDao::newTag($newTag);
                 // Appeler (inclure) la vue
