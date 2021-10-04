@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Model\Tag;
-use App\Dao\Tag;
+use APP\Dao\TagDao;
+use PDOException;
+
 
 class TagController
 {
@@ -25,33 +27,61 @@ class TagController
 
     }
 
-    public function addTag(): void
+    public function index(): void
     {
-        // Créer un nouveau Tag
 
-        // Appeler (inclure) la vue
+    }
 
-        if (!empty($_POST)) {
+    public function add(): void
+    {
+        $request_method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
 
-            $newTag = (new Tag())
-                ->setId(null)
-                ->setName($_POST['name'])
-                ->setTypeId($_POST['id']);
-            try {
-                TagDao::newTag($newTag);
-                // Appeler (inclure) la vue
-                require TEMPLATES . DIRECTORY_SEPARATOR . "tag" . DIRECTORY_SEPARATOR . "newsuccess.html.php";
-            } catch (PDOException $e) {
-                dump($e);
+        if ('GET' === $request_method) {
+            // require implode(
+            // DIRECTORY_SEPARATOR, 
+            // [TEMPLATES, "tags", "new.html.php"]);  
+        } elseif ('POST' === $request_method) {
+            // Récupération des données envoyées depuis le formulaire
+            $args = [
+                "name" => [],
+                "type_id" => []
+            ];
+            $tag_post = filter_input_array(INPUT_POST, $args);
+
+            // Vérification qu'on n'a pas reçu de champs vide ou rempli d'espace
+            if (isset($article_post["name"]) && isset($tag_post["type_id"])) {
+                if (empty(trim($tag_post["name"]))) {
+                    $error_messages[] = "Nom inexistant";
+                }
+
+                if (empty(trim($tag_post["type_id"]))) {
+                    $error_messages[] = "Type inexistant";
+                }
             }
-        } else {
-            require TEMPLATES . DIRECTORY_SEPARATOR . "tag" . DIRECTORY_SEPARATOR . "new.html.php";
-        }
 
+            // Instanciation d'un article avec les valeurs récupérées dans le formulaire
+            $tag = new tag(
+                $tag_post["name"],
+                $tag_post["type_id"]
+            );
+
+            if (empty($error_messages)) {
+                try {
+                    // Création du nouvel article et récupération de son identifiant
+                    $id = (new TagDao())->add($tag);
+                    // Redirection sur l'affiche de l'article nouvellement créée
+                    // $this->redirectToRoute('show_article', [$id]);
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                }
+            } else {
+                //Load template with errors displayed  
+            }
+        }
     }
     
 
-    public function editTag(int $id_tag): void
+    public function edit(int $id): void
     {
 
     }
@@ -59,7 +89,7 @@ class TagController
 
 
     // Récupérer un tag en fonction de son id
-    public function deleteTag(int $id_tag): void
+    public function delete(int $id_tag): void
     {
         // Appeler (inclure) la vue
         ob_start();
