@@ -10,23 +10,6 @@ use PDOException;
 class TagController
 {
 
-    public function index(){
-
-
-        try {
-            $tags = (new Tag())->getAll();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
-        }
-    
-         require implode(
-             DIRECTORY_SEPARATOR, 
-             [TEMPLATES, "projects", "tags.html.php"]);
-    
-
-    }
-
     public function index(): void
     {
         try {
