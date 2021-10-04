@@ -5,6 +5,7 @@
 $router->add("/(home)?", ['GET'], 'App\Controller\PortfolioController', 'index', 'home');
 $router->add("/admin/signup", ['GET', 'POST'], 'App\Controller\PortfolioController', 'signup', 'signup');
 $router->add("/admin/signin", ['GET', 'POST'], 'App\Controller\PortfolioController', 'signin', 'signin');
+$router->add("/logout", ['GET'], 'App\Controller\PortfolioController', 'logout', 'logout');
 
 $router->add("/admin", ['GET'], 'App\Controller\ProfileController', 'index', 'profile');
 $router->add("/admin/edit", ['GET, POST'], 'App\Controller\ProfileController', 'edit', 'edit_profile');
