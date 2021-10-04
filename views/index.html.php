@@ -1,5 +1,6 @@
 <?php
 require TEMPLATES . DIRECTORY_SEPARATOR . "header.html.php";
+require TEMPLATES . DIRECTORY_SEPARATOR . "nav.html.php";
 ?>
 
 <h1>Mes Projets</h1>
