@@ -8,10 +8,10 @@ use PDOException;
 
 class ProfileController
 {
-    public function index():void {
+    public function index(): void
+    {
         try {
             $profile = (new ProfileDao())->getInfo();
-            dump($profile);
         } catch (PDOException $e) {
             echo $e->getMessage();
             // require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
@@ -28,26 +28,25 @@ class ProfileController
             try {
                 $profile = new Profile();
                 $profile->setFirstName($_POST["first_tname"])
-                        ->setLastName($_POST["last_name"])
-                        ->setGender($_POST["gender"])
-                        ->setAdress($_POST["adress"])
-                        ->setCp($_POST["cp"])
-                        ->setCity($_POST["city"])
-                        ->setEmail($_POST["email"])
-                        ->setPhone($_POST["phone"])
-                        ->setLinkedinUrl($_POST["linkedin"])
-                        ->setGithubUrl($_POST["github"])
-                        ->setTwitterUrl($_POST["twitter"])
-                        ->setPassword($_POST["password"])
-                        ->setDriveLicence($_POST["drive_licence"])
-                        ->setCatchphrase($_POST["catchphrase"])
-                        ->setBirthdate($_POST["birthdate"]);
+                    ->setLastName($_POST["last_name"])
+                    ->setGender($_POST["gender"])
+                    ->setAdress($_POST["adress"])
+                    ->setCp($_POST["cp"])
+                    ->setCity($_POST["city"])
+                    ->setEmail($_POST["email"])
+                    ->setPhone($_POST["phone"])
+                    ->setLinkedinUrl($_POST["linkedin"])
+                    ->setGithubUrl($_POST["github"])
+                    ->setTwitterUrl($_POST["twitter"])
+                    ->setPassword($_POST["password"])
+                    ->setDriveLicence($_POST["drive_licence"])
+                    ->setCatchphrase($_POST["catchphrase"])
+                    ->setBirthdate($_POST["birthdate"]);
                 (new ProfileDao())->edit($profile);
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
-        } 
-        else {
+        } else {
             try {
                 $profile = (new ProfileDao())->getInfo();
             } catch (PDOException $e) {
@@ -59,5 +58,4 @@ class ProfileController
             //     [TEMPLATES, "projects", "edit.html.php"]);    
         }
     }
-
 }

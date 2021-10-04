@@ -1,8 +1,5 @@
-
-
 <?php
 
-echo "<h2>Mes Projets</h2>";
 
 foreach ($projects as $project) : ?>
     <article>
@@ -14,7 +11,7 @@ foreach ($projects as $project) : ?>
 <?php
 
 endforeach;
-?>        
+?>
 
 <!-- 
 getId 
