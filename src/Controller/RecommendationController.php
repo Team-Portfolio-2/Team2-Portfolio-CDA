@@ -2,19 +2,28 @@
 
 namespace App\Controller;
 
-use App\Dao\PortefolioDao;
-use App\Model\PortefolioModele;
-use PDOException;
+use App\Dao\Portefolio;
+
 
 class RecommendationController
 {
     public function index(): void
-    {
+
+        try {
+            $projects = (new ProjectDao())->getAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+        }
+
+         require implode(
+             DIRECTORY_SEPARATOR, 
+             [TEMPLATES, "projects", "recommandation.html.php"]
+            );
 
     }
-    
 
-    public function addRecommandation(): void
+    public function add(): void
     {
 
     }

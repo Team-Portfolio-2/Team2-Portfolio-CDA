@@ -1,17 +1,17 @@
-
-    <?php
+<?php
 
 namespace App\Controller;
 
-use App\Dao\PortefolioDao;
-use App\Model\PortefolioModele;
+use App\Dao\Dao;
+use App\Model\Modele;
 use PDOException;
 
-class TagController
+class TypeController
 {
 
     public function index(): void
     {
+
         if (isset($_SESSION['admin']))
         try {
             $projects = (new TypeDao())->getAll();
@@ -25,19 +25,17 @@ class TagController
              [TEMPLATES, "", "Type.html.php"]);
 
         // Récupérer toutes les infos
+
     }
 
-    
+
     public function editTag(int $id_tag): void
     {
-
     }
 
 
 
     public function deleteTag(int $id_tag): void
     {
-
     }
-
 }
