@@ -29,7 +29,16 @@ class TagController
 
     public function index(): void
     {
+        try {
+            $tags = (new TagDao())->getAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            // require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+        }
 
+        // require implode(
+        // DIRECTORY_SEPARATOR, 
+        // [TEMPLATES, "tags", "index.html.php"]);  
     }
 
     public function add(): void
@@ -39,7 +48,7 @@ class TagController
         if ('GET' === $request_method) {
             // require implode(
             // DIRECTORY_SEPARATOR, 
-            // [TEMPLATES, "tags", "new.html.php"]);  
+            // [TEMPLATES, "tags", "add.html.php"]);  
         } elseif ('POST' === $request_method) {
             // Récupération des données envoyées depuis le formulaire
             $args = [
