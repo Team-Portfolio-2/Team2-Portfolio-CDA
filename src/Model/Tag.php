@@ -8,9 +8,8 @@ class Tag
     protected string $name;
     protected int $type_id;
 
-    public function __construct($id, $name, $type_id)
+    public function __construct($name, $type_id)
     {
-        $this->id = $id;
         $this->name = $name;
         $this->type_id = $type_id;
     }
