@@ -7,8 +7,8 @@ use App\Dao\Portefolio;
 
 class RecommendationController
 {
+    public function index(): void
 
-    public function show():void{
         try {
             $projects = (new ProjectDao())->getAll();
         } catch (PDOException $e) {

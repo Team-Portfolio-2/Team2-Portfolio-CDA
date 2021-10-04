@@ -9,8 +9,23 @@ use PDOException;
 class TypeController
 {
 
-    public function showTags(): void
+    public function index(): void
     {
+
+        if (isset($_SESSION['admin']))
+        try {
+            $projects = (new TypeDao())->getAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+        }
+
+         require implode(
+             DIRECTORY_SEPARATOR, 
+             [TEMPLATES, "", "Type.html.php"]);
+
+        // Récupérer toutes les infos
+
     }
 
 
