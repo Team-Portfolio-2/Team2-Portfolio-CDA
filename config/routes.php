@@ -38,3 +38,4 @@ $router->add("/admin/project/(\d+)/delete", ['GET'], 'App\Controller\ProjectCont
 $router->add("/projects", ['GET'], 'App\Controller\ProjectController', 'index', 'list_projects');
 $router->add("/project/(\d+)/edit", ['GET'], 'App\Controller\ProjectController', 'edit', 'edit_project');
 $router->add("/educations", ['GET'], 'App\Controller\EducationController', 'index', 'list_educations');
+$router->add("/profile", ['GET'], 'App\Controller\ProfileController', 'index', 'profile');

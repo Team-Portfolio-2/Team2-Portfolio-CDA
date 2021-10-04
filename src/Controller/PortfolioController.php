@@ -17,6 +17,7 @@ class PortfolioController
     {
         try {
             $projects = (new ProjectDao())->getAll();
+            $profile = (new ProfileDao())->getInfo();
         } catch (PDOException $e) {
             echo $e->getMessage();
             require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
@@ -78,7 +79,7 @@ class PortfolioController
                     ->setTwitterUrl(null)
                     ->setPassword($passwordHash)
                     ->setDriveLicence(null)
-                    ->setCatchphrase(null)
+                    ->setCatchphrase("Ma passion c'est le code !")
                     ->setBirthdate(null);
             }
             if (empty($error_messages)) {
