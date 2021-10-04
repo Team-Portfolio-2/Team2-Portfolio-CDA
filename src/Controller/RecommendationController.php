@@ -8,9 +8,13 @@ use PDOException;
 
 class RecommendationController
 {
+    public function index(): void
+    {
 
+    }
+    
 
-    public function addc(): void
+    public function addRecommandation(): void
     {
 
     }
