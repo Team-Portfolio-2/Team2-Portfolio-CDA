@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use App\Dao\PortefolioDao;
-use App\Dao\PortfolioDao;
-use App\Model\PortefolioModele;
-use App\Model\Profile;
 use PDOException;
+use App\Model\Profile;
+use App\Dao\ProjectDao;
+use App\Dao\PortfolioDao;
+use App\Dao\PortefolioDao;
+use App\Model\PortefolioModele;
 
 class PortfolioController
 {
@@ -15,7 +16,17 @@ class PortfolioController
     public function index(): void
     {
         if (isset($_SESSION['admin']))
-            dump($_SESSION);
+        try {
+            $projects = (new ProjectDao())->getAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+        }
+
+         require implode(
+             DIRECTORY_SEPARATOR, 
+             [TEMPLATES, "", "index.html.php"]);
+
         // Récupérer toutes les infos
     }
 

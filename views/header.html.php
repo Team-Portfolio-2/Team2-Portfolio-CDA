@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    
+    <h2>Header</h2>
+    
     <?php require TEMPLATES . DIRECTORY_SEPARATOR . "nav.html.php";
     ?>
-    <h2>Header</h2>
