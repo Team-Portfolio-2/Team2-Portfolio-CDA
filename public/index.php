@@ -13,7 +13,7 @@ $router = Router::getInstance();
 
 require implode(DIRECTORY_SEPARATOR, [ROOT, 'config', 'routes.php']);
 
-dump($router);
+
 
 // Appliquer l'action
 try {
