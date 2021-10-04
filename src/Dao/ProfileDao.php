@@ -42,4 +42,43 @@ class ProfileDao extends AbstractDao
 
         return $profile;
     }
+
+    public function edit(Profile $profile): void
+    {
+      $req = $this->pdo->prepare("UPDATE profile
+      SET 
+      first_name = :first_name,
+      last_name = :last_name,
+      gender = :gender,
+      adress = :adress,
+      cp = :cp,
+      city = :city,
+      email = :email,
+      phone = :phone,
+      linkedin_url = :linkedin_url,
+      github_url = :github_url,
+      twitter_url = :twitter_url,
+      password = :password,
+      drive_licence = :drive_licence,
+      catchphrase = :catchphrase,
+      birthdate = :birthdate
+      WHERE email = :email");
+
+      $req->execute([
+        ":first_name" => $profile->getFirstName(),
+        ":last_name" => $profile->getLastName(),
+        ":gender" => $profile->getGender(),
+        ":adress" => $profile->getAdress(),
+        ":cp" => $profile->getCp(),
+        ":city" => $profile->getCity(),
+        ":email" => $profile->getEmail(),
+        ":phone" => $profile->getPhone(),
+        ":linkedin_url" => $profile->getLinkedinUrl(),
+        ":twitter_url" => $profile->getTwitterUrl(),
+        ":password" => $profile->getPassword(),
+        ":drive_licence" => $profile->getDriveLicence(),
+        ":catchphrase" => $profile->getCatchphrase(),
+        ":birthdate" => $profile->getCatchphrase()
+      ]);
+    }
 }
