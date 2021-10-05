@@ -7,9 +7,11 @@
 <?php
 require TEMPLATES . DIRECTORY_SEPARATOR . "header.html.php";
 ?>
-   
+
+
 <?= $content; ?>
 
 <?php
 require TEMPLATES . DIRECTORY_SEPARATOR . "footer.html.php";
 ?>
+

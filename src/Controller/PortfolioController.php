@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use App\Dao\PortfolioDao;
+use App\Dao\ProfileDao;
 use PDOException;
 use App\Model\Profile;
 use App\Dao\ProjectDao;
-use App\Dao\PortfolioDao;
-use App\Dao\PortefolioDao;
+
 use App\Model\PortefolioModele;
 
 class PortfolioController
@@ -15,7 +16,9 @@ class PortfolioController
 
     public function index(): void
     {
+
         if (isset($_SESSION['admin']))
+
         try {
             $projects = (new ProjectDao())->getAll();
         } catch (PDOException $e) {
@@ -23,18 +26,33 @@ class PortfolioController
             require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
         }
 
-         require implode(
-             DIRECTORY_SEPARATOR, 
-             [TEMPLATES, "", "index.html.php"]);
+        require implode(
+            DIRECTORY_SEPARATOR,
+            [TEMPLATES, "", "index.html.php"]
+        );
+
 
         // Récupérer toutes les infos
     }
-
+    /**
+     * Displays the form or POST an admin
+     *
+     * @return void
+     */
     public function signUp(): void
     {
         $request_method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
         if ('GET' === $request_method) {
-            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, 'admin', 'signup.html.php']);
+            $profile = (new ProfileDao())->getInfo();
+            // Guard against registration if already an admin
+            if (!empty($profile)) {
+                header("Location: /admin/signin");
+            }
+            // If no admin exists allows the form
+            else {
+                require implode(DIRECTORY_SEPARATOR, [TEMPLATES, 'admin', 'signup.html.php']);
+            }
+            //POST a admin
         } elseif ('POST' === $request_method) {
 
             $args = [
@@ -82,6 +100,11 @@ class PortfolioController
         }
     }
 
+    /**
+     * GET a admin
+     *
+     * @return void
+     */
     public function signIn(): void
     {
         $request_method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -114,8 +137,13 @@ class PortfolioController
             }
         }
     }
-
+    /**
+     * LOGOUT a admin
+     *
+     * @return void
+     */
     public function logout(): void
     {
+        require implode(DIRECTORY_SEPARATOR, [TEMPLATES, 'admin', 'logout.html.php']);
     }
 }

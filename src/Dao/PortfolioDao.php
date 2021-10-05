@@ -7,6 +7,11 @@ use PDO;
 
 class PortfolioDao extends AbstractDao
 {
+    /**
+     * POST an admin
+     *
+     * @return void
+     */
     public function signUp(Profile $admin): void
     {
         $req = $this->pdo->prepare(
@@ -41,10 +46,14 @@ class PortfolioDao extends AbstractDao
             ":password" => $admin->getPassword(),
             ":drive_licence" => $admin->getDriveLicence(),
             ":catchphrase" => $admin->getCatchphrase(),
-            ":birthdate" => $admin->getBirthdate(),
+            ":birthdate" => '2000-01-01',
         ]);
     }
-
+    /**
+     * GET an admin
+     *
+     * @return Profile
+     */
     public function signIn($admin)
     {
         $req = $this->pdo->prepare(
