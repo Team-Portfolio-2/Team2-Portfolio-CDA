@@ -20,6 +20,7 @@ class ProfileDao extends AbstractDao
     {
         $req = $this->pdo->query("SELECT * FROM profile");
         $info = $req->fetch(PDO::FETCH_ASSOC);
+        dump($info);
         $profile = (new Profile())
             ->setFirstName($info["first_name"])
             ->setLastName($info["last_name"])

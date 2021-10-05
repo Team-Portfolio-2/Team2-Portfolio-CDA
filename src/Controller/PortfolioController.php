@@ -17,10 +17,9 @@ class PortfolioController
     public function index(): void
     {
 
-        if (isset($_SESSION['admin']))
-
         try {
             $projects = (new ProjectDao())->getAll();
+            dump($projects);
         } catch (PDOException $e) {
             echo $e->getMessage();
             require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
