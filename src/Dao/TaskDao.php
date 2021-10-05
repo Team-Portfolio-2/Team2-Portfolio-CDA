@@ -48,4 +48,35 @@ class TaskDao extends AbstractDao
             ":id" => $id
         ]);
     }
+
+     /**
+     * Récupération d'une task en fonction de son identifiant
+     *
+     * @param int $id Identifiant de la task à récupérer
+     * @return array Renvoi la task si il en trouve un, sinon renvoi false
+     */
+    public function getById(int $id): array
+    {
+        $req = $this->pdo->prepare("SELECT * FROM tasks WHERE id = :id");
+        $req->execute([
+            ":id" => $id
+        ]);
+        return $req->fetch(PDO::FETCH_CLASS);
+    }
+
+    /**
+     * Edition d'une task
+     *
+     * @param Task $task Task à éditer
+     */
+    public function edit(Task $task): void
+    {
+        $req = $this->pdo->prepare("UPDATE tasks
+                            SET description = :description
+                            WHERE id = :id");
+        $req->execute([
+            ":description" => $task->getDescription(),
+        ]);
+    }
+
 }

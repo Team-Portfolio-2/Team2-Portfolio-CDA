@@ -49,4 +49,38 @@ class TagDao extends AbstractDao
             ":id" => $id
         ]);
     }
+
+    /**
+     * Récupération du tag en fonction de son identifiant
+     *
+     * @param int $id Identifiant du tag à récupérer
+     * @return array Renvoi le tag si il en trouve un, sinon renvoi false
+     */
+    public function getById(int $id): array
+    {
+        $req = $this->pdo->prepare("SELECT * FROM tags WHERE id = :id");
+        $req->execute([
+            ":id" => $id
+        ]);
+        return $req->fetch(PDO::FETCH_CLASS);
+    }
+
+    /**
+     * Edition d'une tag
+     *
+     * @param Task $tag Tag à éditer
+     */
+    public function edit(Tag $tag): void
+    {
+        $req = $this->pdo->prepare("UPDATE tags
+                SET name = :name, type_id = :type_id
+                WHERE id = :id");
+
+        $req->execute([
+            ":name" => $tag->getName(),
+            ":type_id" => $tag->getTypeId()
+        ]);
+    }
+
+
 }
