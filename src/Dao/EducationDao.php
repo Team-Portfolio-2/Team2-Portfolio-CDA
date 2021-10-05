@@ -1,51 +1,35 @@
-<?php 
+<?php
 
 namespace App\Dao;
 
 use App\Model\Education;
+use App\Model\Profile;
 use PDO;
 
 class EducationDao extends AbstractDao
 {
-    /**
-     * Récupération de tous les types
-     *
-     * @return Education[]
-     */
+
     public function getAll(): array
     {
-        $req = $this->pdo->query("SELECT * FROM tasks");
-        return $req->fetchAll(PDO::FETCH_CLASS);
-    }
+        $req = $this->pdo->prepare("SELECT * FROM educations");
+        $req->execute();
+        $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
-    /**
-     * Insertion d'un nouveau Education
-     *
-     * @param Education $task Education à insérer
-     * @return int Identifiant du Education nouvellement créée
-     */
-    public function add(Education $task): int {
-        $req = $this->pdo->prepare("
-        INSERT INTO tasks (description) 
-        VALUES (:description)");
+        $educations = [];
 
-        $req->execute([
-            ":description" => $task->getDescription()
-        ]);
+        foreach ($result as $key => $education) {
 
-        return $this->pdo->lastInsertId();
-    }
 
-    /**
-     * Suppression d'un task
-     *
-     * @param int $id Identifiant du task à supprimer
-     */
-    public function delete(int $id): void
-    {
-        $req = $this->pdo->prepare("DELETE FROM tasks WHERE id = :id");
-        $req->execute([
-            ":id" => $id
-        ]);
+            $educations[$key] = (new Education(
+                $education['id'],
+                $education['title'],
+                $education['school'],
+                $education['year'],
+                $education['description'],
+
+            ));
+        }
+
+        return $educations;
     }
 }

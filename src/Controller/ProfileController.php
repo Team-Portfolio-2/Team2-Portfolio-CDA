@@ -17,9 +17,10 @@ class ProfileController
             // require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
         }
 
-        // require implode(
-        //     DIRECTORY_SEPARATOR, 
-        //     [TEMPLATES, "projects", "index.html.php"]);
+        require implode(
+            DIRECTORY_SEPARATOR,
+            [TEMPLATES, "profile", "profile.html.php"]
+        );
     }
 
     public function edit(): void
