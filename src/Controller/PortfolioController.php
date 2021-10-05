@@ -7,6 +7,7 @@ use App\Dao\ProfileDao;
 use PDOException;
 use App\Model\Profile;
 use App\Dao\ProjectDao;
+
 use App\Model\PortefolioModele;
 
 class PortfolioController
@@ -15,6 +16,9 @@ class PortfolioController
 
     public function index(): void
     {
+
+        if (isset($_SESSION['admin']))
+
         try {
             $projects = (new ProjectDao())->getAll();
         } catch (PDOException $e) {
@@ -26,6 +30,7 @@ class PortfolioController
             DIRECTORY_SEPARATOR,
             [TEMPLATES, "", "index.html.php"]
         );
+
 
         // Récupérer toutes les infos
     }
