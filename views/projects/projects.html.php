@@ -1,6 +1,5 @@
 <?php
 
-
 foreach ($projects as $project) : ?>
     <article>
         <h2><?= $project->getName() ?></h2>
@@ -12,6 +11,7 @@ foreach ($projects as $project) : ?>
 
 endforeach;
 ?>
+
 
 <!-- 
 getId 

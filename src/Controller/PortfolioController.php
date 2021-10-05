@@ -7,7 +7,7 @@ use App\Dao\ProfileDao;
 use PDOException;
 use App\Model\Profile;
 use App\Dao\ProjectDao;
-use App\Model\PortefolioModele;
+use App\Dao\EducationDao;
 
 class PortfolioController
 {
@@ -18,6 +18,7 @@ class PortfolioController
         try {
             $projects = (new ProjectDao())->getAll();
             $profile = (new ProfileDao())->getInfo();
+            $educations = (new EducationDao())->getAll();
         } catch (PDOException $e) {
             echo $e->getMessage();
             require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
