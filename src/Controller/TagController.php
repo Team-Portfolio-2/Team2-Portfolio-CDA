@@ -80,16 +80,19 @@ class TagController
 
 
 
-    // Récupérer un tag en fonction de son id
-    public function delete(int $id_tag): void
+    /**
+     * Suppression d'un tag en fonction de son identifiant unique
+     *
+     * @param int $id Identifiant de l'article
+     */
+    public function delete(int $id): void
     {
-        // Appeler (inclure) la vue
-        ob_start();
-        require "tags.html.php";
-        $content = ob_get_clean();
-
-        // Appeler le layout
-        require "layout.html.php";
+        try {
+            //Suppression de l'article en fonction de son identifiant
+            (new TagDao())->delete($id);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
 }

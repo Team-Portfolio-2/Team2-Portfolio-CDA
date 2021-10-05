@@ -36,4 +36,17 @@ class TagDao extends AbstractDao
 
         return $this->pdo->lastInsertId();
     }
+
+    /**
+     * Suppression d'un tag
+     *
+     * @param int $id Identifiant du tag à supprimer
+     */
+    public function delete(int $id): void
+    {
+        $req = $this->pdo->prepare("DELETE FROM tags WHERE id = :id");
+        $req->execute([
+            ":id" => $id
+        ]);
+    }
 }
