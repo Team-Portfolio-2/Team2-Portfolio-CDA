@@ -26,21 +26,20 @@ class TypeDao extends AbstractDao
      */
     public function add(Type $type): int {
         $req = $this->pdo->prepare("
-        INSERT INTO types (name, type_id) 
-        VALUES (:name, :type_id)");
+        INSERT INTO types (name) 
+        VALUES (:name)");
 
         $req->execute([
-            ":name" => $type->getName(),
-            ":type_id" => $type->getTypeId()
+            ":name" => $type->getName()
         ]);
 
         return $this->pdo->lastInsertId();
     }
 
     /**
-     * Suppression d'un tag
+     * Suppression d'un type
      *
-     * @param int $id Identifiant du tag à supprimer
+     * @param int $id Identifiant du type à supprimer
      */
     public function delete(int $id): void
     {
