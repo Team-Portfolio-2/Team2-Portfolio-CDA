@@ -1,6 +1,5 @@
 <?php
 
-
 foreach ($educations as $education) : ?>
     <article>
         <h2><?= $education->getTitle() ?></h2>

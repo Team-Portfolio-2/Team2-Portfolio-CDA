@@ -10,6 +10,7 @@ foreach ($projects as $project) : ?>
 <?php
 
 endforeach;
+
 ?>
 
 
