@@ -12,7 +12,9 @@
 
 <body>
 
+
     <h2>Mon PortFolio de OUF</h2>
+
 
     <?php require TEMPLATES . DIRECTORY_SEPARATOR . "nav.html.php";
     ?>

@@ -15,19 +15,23 @@ class PortfolioController
 
     public function index(): void
     {
-        try {
-            $projects = (new ProjectDao())->getAll();
-            $profile = (new ProfileDao())->getInfo();
-            $educations = (new EducationDao())->getAll();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
-        }
+
+        if (isset($_SESSION['admin']))
+
+            try {
+                $projects = (new ProjectDao())->getAll();
+                $profile = (new ProfileDao())->getInfo();
+                $educations = (new EducationDao())->getAll();
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                require implode(DIRECTORY_SEPARATOR, [TEMPLATES, "error500.html.php"]);
+            }
 
         require implode(
             DIRECTORY_SEPARATOR,
             [TEMPLATES, "", "index.html.php"]
         );
+
 
         // Récupérer toutes les infos
     }
