@@ -41,7 +41,7 @@ class TagController
             $tag_post = filter_input_array(INPUT_POST, $args);
 
             // Vérification qu'on n'a pas reçu de champs vide ou rempli d'espace
-            if (isset($article_post["name"]) && isset($tag_post["type_id"])) {
+            if (isset($tag_post["name"]) && isset($tag_post["type_id"])) {
                 if (empty(trim($tag_post["name"]))) {
                     $error_messages[] = "Nom inexistant";
                 }

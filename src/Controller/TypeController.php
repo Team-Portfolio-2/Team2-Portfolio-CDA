@@ -21,7 +21,7 @@ class TypeController
 
         // require implode(
         // DIRECTORY_SEPARATOR, 
-        // [TEMPLATES, "types", "index.html.php"]);  
+        // [TEMPLATES, "types", "index.html.php"]);
     }
 
     public function add(): void
@@ -35,26 +35,21 @@ class TypeController
         } elseif ('POST' === $request_method) {
             // Récupération des données envoyées depuis le formulaire
             $args = [
-                "name" => [],
-                "type_id" => []
+                "name" => []
             ];
             $type_post = filter_input_array(INPUT_POST, $args);
 
             // Vérification qu'on n'a pas reçu de champs vide ou rempli d'espace
-            if (isset($article_post["name"]) && isset($type_post["type_id"])) {
+            if (isset($type_post["name"])) {
                 if (empty(trim($type_post["name"]))) {
                     $error_messages[] = "Nom inexistant";
-                }
-
-                if (empty(trim($type_post["type_id"]))) {
-                    $error_messages[] = "Type inexistant";
                 }
             }
 
             // Instanciation d'un article avec les valeurs récupérées dans le formulaire
             $type = new Type(
-                $type_post["name"],
-                $type_post["type_id"]
+                null,
+                $type_post["name"]
             );
 
             if (empty($error_messages)) {
@@ -77,8 +72,6 @@ class TypeController
     {
 
     }
-
-
 
     /**
      * Suppression d'un type en fonction de son identifiant unique
